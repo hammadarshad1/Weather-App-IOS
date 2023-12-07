@@ -97,7 +97,7 @@ struct BackgroundView: View {
         
         // New approach to add gradient after IOS 16.0
         ContainerRelativeShape()
-            .fill(isNight ? Color.blue.gradient : Color.gray.gradient)
+            .fill(isNight ? Color.black.gradient : Color.blue.gradient)
             .ignoresSafeArea()
     }
 }
