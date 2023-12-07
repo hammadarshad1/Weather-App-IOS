@@ -90,10 +90,15 @@ struct BackgroundView: View {
     var isNight: Bool
     
     var body: some View {
-        LinearGradient(gradient: Gradient(colors: [isNight ? .black : .blue, isNight ? .gray : Color("lightBlue")]),
-                       startPoint: .topLeading,
-                       endPoint: .bottomTrailing)
-        .ignoresSafeArea(.all)
+//        LinearGradient(gradient: Gradient(colors: [isNight ? .black : .blue, isNight ? .gray : Color("lightBlue")]),
+//                       startPoint: .topLeading,
+//                       endPoint: .bottomTrailing)
+//        .ignoresSafeArea(.all)
+        
+        // New approach to add gradient after IOS 16.0
+        ContainerRelativeShape()
+            .fill(isNight ? Color.blue.gradient : Color.gray.gradient)
+            .ignoresSafeArea()
     }
 }
 
