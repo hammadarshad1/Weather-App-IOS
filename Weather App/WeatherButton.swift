@@ -22,3 +22,11 @@ struct WeatherButtonText: View {
             .cornerRadius(10)
     }
 }
+
+struct WeatherButton_Preview: PreviewProvider {
+    static var previews: some View {
+        WeatherButtonText(buttonTitle: "Test Title", 
+                          backgroundColor: .blue,
+                          foregroundColor: .white)
+    }
+}
