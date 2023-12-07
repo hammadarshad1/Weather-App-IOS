@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var isNight = false
+    
     var body: some View {
         ZStack {
-            BackgroundView(topColor: .blue, bottomColor: Color("lightBlue"))
+            BackgroundView(isNight: isNight)
             
             VStack {
                 CityTextView(cityName: "Karachi, Pakistan")
@@ -42,7 +45,7 @@ struct ContentView: View {
                 Spacer()
                 
                 Button {
-                    print("tapped")
+                    isNight.toggle()
                 } label: {
                     WeatherButtonText(buttonTitle: "Change Day Time",
                                       backgroundColor: .white,
@@ -71,7 +74,7 @@ struct WeatherDayView: View {
                 .font(.system(size: 16, weight: .medium))
                 .foregroundColor(.white)
             Image(systemName: self.imageSystemName)
-                .renderingMode(.original)
+                .symbolRenderingMode(.multicolor)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 40, height: 40)
@@ -84,14 +87,13 @@ struct WeatherDayView: View {
 
 struct BackgroundView: View {
 
-    var topColor: Color
-    var bottomColor: Color
+    var isNight: Bool
     
     var body: some View {
-        LinearGradient(gradient: Gradient(colors: [self.topColor, self.bottomColor]),
+        LinearGradient(gradient: Gradient(colors: [isNight ? .black : .blue, isNight ? .gray : Color("lightBlue")]),
                        startPoint: .topLeading,
                        endPoint: .bottomTrailing)
-            .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+        .ignoresSafeArea(.all)
     }
 }
 
@@ -115,7 +117,7 @@ struct WeatherStatusView: View {
     var body: some View {
         VStack(spacing: 10) {
             Image(systemName: self.weatherImage)
-                .renderingMode(.original)
+                .symbolRenderingMode(.multicolor)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 180, height: 180)
